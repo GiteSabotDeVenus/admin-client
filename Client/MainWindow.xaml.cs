@@ -29,11 +29,6 @@ namespace Client {
         }
         
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e) {
-            if (!File.Exists("auth.txt")) {
-                File.Create("auth.txt");
-                MessageBox.Show("Un fichier \"auth.txt\" a été créé. Veuillez le remplir avec les informations d'authentification GitHub.");
-            }
-            
             Execute("rmdir /s /q data");
             ExecuteGit("clone https://github.com/GiteSabotDeVenus/data");
             string[] content = File.ReadAllLines(@"data\reservations");
@@ -220,9 +215,7 @@ namespace Client {
             ProgressBar.Value = 2;
             ProgressTextBlock.Text = DateTime.Now + "Envoi des données...";
 
-            string authInfos = File.ReadAllText("auth.txt");
-
-            ExecuteGitInRepo($"push https://{authInfos}@github.com/GiteSabotDeVenus/data --all");
+            ExecuteGitInRepo($"push https://github.com/GiteSabotDeVenus/data --all");
             
             ProgressBar.Value = 3;
 
