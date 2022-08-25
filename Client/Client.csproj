@@ -15,4 +15,8 @@
     <Resource Include="logo.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="obj" />
+  </ItemGroup>
+
 </Project>
