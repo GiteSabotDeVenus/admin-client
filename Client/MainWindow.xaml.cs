@@ -188,13 +188,23 @@ namespace Client {
             List<string> reservationsText = new List<string>();
 
             foreach (string reservedKey in _reservations.Keys) {
-                string reservationText = "";
-                reservationText += reservedKey + ":";
-                foreach (int day in _reservations[reservedKey]) {
-                    reservationText += day + ";";
-                }
-                reservationsText.Add(reservationText);
+                int month = int.Parse(reservedKey.Split("-")[0]) + 1;
+                int year = int.Parse(reservedKey.Split("-")[1]);
+                DateTime dateTime = DateTime.Now;
+                int actualMonth = dateTime.Month;
+                int actualYear = dateTime.Year;
 
+                if ((year > actualYear) || (year == actualYear && month >= actualMonth)) {
+                    if (_reservations[reservedKey].Count > 0) {
+                        string reservationText = "";
+                        reservationText += reservedKey + ":";
+                        foreach (int day in _reservations[reservedKey]) {
+                            reservationText += day + ";";
+                        }
+                        reservationsText.Add(reservationText);
+                    }
+                }
+                
                 ProgressBar.Value += 1;
             }
             
