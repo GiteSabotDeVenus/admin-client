@@ -16,4 +16,9 @@
     <Resource Include="logo.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Executor\Executor.csproj" />
+    <ProjectReference Include="..\Reservations\Reservations.csproj" />
+  </ItemGroup>
+
 </Project>
